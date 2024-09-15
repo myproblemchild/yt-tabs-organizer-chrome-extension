@@ -5,7 +5,6 @@
   "description": "Sort your YouTube tabs by video durations",
   "permissions": [
     "tabs",
-    "activeTab",
     "scripting"
   ],
   "action": {
