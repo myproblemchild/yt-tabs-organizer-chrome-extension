@@ -51,8 +51,11 @@ function displayTabs() {
   displayElement.innerHTML = '';
 
   const ul = document.createElement('ul');
-  for (const [k, v] of Object.entries(tabs)) {
-    ul.appendChild(createLiForTab(v));
+  const sortedEntries = Object.entries(tabs).sort((a, b) => {
+    return a[1].idx - b[1].idx;
+  });
+  for (var i = 0; i < sortedEntries.length; i++) {
+    ul.appendChild(createLiForTab(sortedEntries[i][1]));
   }
   displayElement.appendChild(ul);
 }
@@ -61,6 +64,7 @@ function processVideoLengthResponse(response, tab, index) {
   tabs[tab.id] = {
     'title': tab.title,
     'len': (response && response.videoLength) ? response.videoLength : -1,
+    'idx': index
   };
   displayTabs();
 }
